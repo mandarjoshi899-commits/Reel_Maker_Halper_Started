@@ -1,122 +1,116 @@
 <!doctype html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#100d1c">
-<meta name="description" content="Reel Maker Helper - scripts, scene plans, captions and hashtags.">
-<title>Reel Maker Helper</title>
+<meta name="description" content="Reel Maker Helper 2.0 - AI scripts, stories, music mood and thumbnail ideas.">
+<title>Reel Maker Helper 2.0</title>
 <style>
-:root{--bg:#0b0912;--panel:#171323;--panel2:#211a31;--line:#332944;--text:#f7f2ff;--muted:#b9adc9;--pink:#ff4fa3;--violet:#9b7bff;--cyan:#67e5e0;--good:#8de5ad}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0%,#34204b 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-header{padding:25px 18px 18px;max-width:920px;margin:auto}.brand{display:flex;align-items:center;gap:11px}.logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--violet));display:grid;place-items:center;font-size:22px;box-shadow:0 8px 30px #b342a455}.brand h1{font-size:19px;margin:0;letter-spacing:.2px}.tag{font-size:12px;color:var(--muted)}.hero{margin-top:24px}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.7px}.hero h2{font-size:clamp(27px,7vw,40px);line-height:1.12;margin:8px 0}.hero p{color:var(--muted);margin:8px 0 0;max-width:580px}
-main{max-width:920px;margin:auto;padding:0 14px 50px}.tabs{display:flex;gap:8px;overflow:auto;padding:10px 0 15px;position:sticky;top:0;background:#0b0912ed;z-index:5}.tab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:99px;padding:9px 14px;font-size:13px}.tab.active{background:linear-gradient(100deg,#7c43b9,#b83e86);color:white;border-color:transparent}
-.card{background:linear-gradient(145deg,#1b1628,#14111d);border:1px solid var(--line);border-radius:20px;padding:17px;margin:9px 0 15px;box-shadow:0 12px 35px #0002}.card h3{margin:0 0 4px;font-size:18px}.sub{color:var(--muted);font-size:13px;margin:0 0 15px}.grid{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:650px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
-label{display:block;font-size:13px;color:#e8def5;margin:10px 0 6px}input,select,textarea{width:100%;border:1px solid #40334f;background:#100d18;color:var(--text);border-radius:12px;padding:12px;font:inherit;outline:none}textarea{min-height:85px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--violet);box-shadow:0 0 0 3px #9b7bff22}
-.btn{border:0;border-radius:12px;padding:12px 15px;background:linear-gradient(100deg,#a64ee9,#ed4d9d);color:white;font-weight:750;font-size:14px;cursor:pointer}.btn.secondary{background:#2a2238;border:1px solid #4a3c60;color:#f4eaff}.btn.small{padding:8px 11px;font-size:12px}.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.output{white-space:pre-wrap;background:#100d18;border:1px solid #382d49;border-radius:13px;padding:14px;color:#f4edff;min-height:70px;font-size:14px}.pill{display:inline-block;background:#302342;color:#d9c5ff;border:1px solid #57416d;border-radius:99px;padding:5px 9px;font-size:11px;margin:3px 3px 3px 0}.hidden{display:none!important}.scene{border:1px solid #3a3048;border-radius:13px;padding:12px;margin:9px 0;background:#14101e}.scene b{color:var(--cyan)}.saved-item{border:1px solid #3a3048;border-radius:12px;padding:12px;margin:9px 0}.saved-item strong{display:block;margin-bottom:4px}.note{font-size:12px;color:var(--muted)}footer{text-align:center;color:#82768f;font-size:12px;padding:20px}
+:root{--bg:#0b0912;--panel:#171323;--panel2:#211a31;--line:#382c49;--text:#f8f3ff;--muted:#b9adc9;--pink:#ff4fa3;--violet:#9b7bff;--cyan:#67e5e0;--green:#91e6b0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0%,#38204d 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header,main{max-width:950px;margin:auto}header{padding:23px 16px 14px}.brand{display:flex;align-items:center;gap:11px}.logo{width:45px;height:45px;border-radius:15px;background:linear-gradient(135deg,var(--pink),var(--violet));display:grid;place-items:center;font-size:22px}.brand h1{font-size:18px;margin:0}.tag,.muted,.sub,.note{color:var(--muted)}.tag{font-size:12px}.hero{padding:22px 0 8px}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.7px}.hero h2{font-size:clamp(27px,7vw,40px);line-height:1.12;margin:8px 0}.hero p{color:var(--muted);max-width:650px;margin:0}
+main{padding:0 13px 40px}.tabs{display:flex;gap:7px;overflow:auto;padding:10px 0 14px;position:sticky;top:0;background:#0b0912ed;z-index:5}.tab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:99px;padding:9px 13px;font-size:12px}.tab.active{background:linear-gradient(100deg,#7c43b9,#b83e86);color:white;border-color:transparent}
+.card{background:linear-gradient(145deg,#1b1628,#14111d);border:1px solid var(--line);border-radius:19px;padding:16px;margin:9px 0 14px;box-shadow:0 12px 35px #0002}.card h3{margin:0 0 4px;font-size:18px}.sub{font-size:13px;margin:0 0 13px}.grid{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:650px){.grid.two{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:13px;margin:10px 0 6px;color:#e8def5}input,select,textarea{width:100%;border:1px solid #40334f;background:#100d18;color:var(--text);border-radius:11px;padding:12px;font:inherit;outline:none}textarea{min-height:80px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--violet)}.btn{border:0;border-radius:12px;padding:11px 14px;background:linear-gradient(100deg,#a64ee9,#ed4d9d);color:white;font-weight:750;font-size:13px;cursor:pointer}.btn.secondary{background:#2a2238;border:1px solid #4a3c60;color:#f4eaff}.btn.danger{background:#4a2037}.btn:disabled{opacity:.5}.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.out{white-space:pre-wrap;background:#100d18;border:1px solid #382d49;border-radius:12px;padding:13px;min-height:60px;font-size:14px}.pill{display:inline-block;background:#302342;color:#decaff;border:1px solid #57416d;border-radius:99px;padding:4px 8px;font-size:11px;margin:3px}.hidden{display:none!important}.scene,.saved{border:1px solid #3a3048;border-radius:12px;padding:12px;margin:8px 0;background:#14101e}.scene b{color:var(--cyan)}.status{font-size:12px;padding:8px 10px;border-radius:10px;background:#211a31;color:var(--muted);margin-top:10px}.status.ok{color:var(--green)}.status.warn{color:#ffd28b}.thumb{border:1px dashed #69527f;border-radius:14px;padding:18px;text-align:center;background:linear-gradient(135deg,#251633,#11101b);margin-top:10px}.thumb .big{font-size:25px;font-weight:900;line-height:1.12;text-transform:uppercase}.thumb .small{color:#f9a7d1;font-size:12px;margin-top:8px}.note{font-size:11px}footer{text-align:center;color:#82768f;font-size:11px;padding:20px}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <header>
- <div class="brand"><div class="logo">▶</div><div><h1>REEL MAKER HELPER</h1><div class="tag">Your Idea. Your Story. Your Reel.</div></div></div>
- <section class="hero"><div class="eyebrow">CREATE • PLAN • POST</div><h2>Reel ka idea hai?<br><span style="background:linear-gradient(90deg,#ff69ad,#a78bff);background-clip:text;color:transparent">Ab plan banana easy hai.</span></h2><p>Script, scene-by-scene plan, captions aur hashtags — sab ek jagah. Hindi + Hinglish creator toolkit.</p></section>
+ <div class="brand"><div class="logo">▶</div><div><h1>REEL MAKER HELPER <span class="pill">2.0</span></h1><div class="tag">Your Idea. Your Story. Your Reel.</div></div></div>
+ <section class="hero"><div class="eyebrow">CREATE • PLAN • SAVE • POST</div><h2>Apni next Reel ko<br><span style="background:linear-gradient(90deg,#ff69ad,#a78bff);background-clip:text;color:transparent">ready-to-shoot banao.</span></h2><p>AI-assisted scripts, emotional & comedy stories, music mood, thumbnail ideas aur cloud saved scripts.</p></section>
 </header>
 <main>
- <nav class="tabs" aria-label="Main menu">
-  <button class="tab active" data-tab="create">✨ Create</button><button class="tab" data-tab="captions">✍️ Captions</button><button class="tab" data-tab="saved">🔖 Saved Ideas</button>
+ <nav class="tabs">
+  <button class="tab active" data-tab="create">✨ Create</button><button class="tab" data-tab="music">🎵 Music Mood</button><button class="tab" data-tab="thumb">🖼 Thumbnail</button><button class="tab" data-tab="saved">🔖 Saved</button><button class="tab" data-tab="account">👤 Account</button>
  </nav>
  <section id="create">
   <div class="card">
-   <h3>🎬 Apni Reel plan karo</h3><p class="sub">Topic aur mood bharo. Generate dabao.</p>
+   <h3>🎬 AI Reel Script Studio</h3><p class="sub">Topic, category aur duration select karo. AI connected ho to fresh script; warna built-in sample generator.</p>
    <div class="grid two">
-    <div><label for="topic">Reel ka topic / idea</label><input id="topic" placeholder="Jaise: dost ki sachchi dosti, exam stress..." maxlength="120"></div>
-    <div><label for="category">Reel category</label><select id="category"><option value="emotional">Emotional</option><option value="comedy">Comedy</option><option value="motivation">Motivational</option><option value="horror">Suspense / Horror (non-graphic)</option><option value="education">Educational</option><option value="daily">Daily life</option></select></div>
-    <div><label for="duration">Video duration</label><select id="duration"><option>30 seconds</option><option>45 seconds</option><option>60 seconds</option><option>90 seconds</option></select></div>
-    <div><label for="language">Language</label><select id="language"><option>Hindi + Hinglish</option><option>Simple Hindi</option><option>Easy English</option></select></div>
+    <div><label>Reel topic / idea</label><input id="topic" maxlength="180" placeholder="Jaise: ek dost jo mushkil waqt mein saath deta hai"></div>
+    <div><label>Category</label><select id="category"><option value="emotional">Emotional story</option><option value="comedy">Comedy story</option><option value="motivation">Motivational</option><option value="education">Educational</option><option value="daily">Daily life</option><option value="suspense">Suspense (non-graphic)</option></select></div>
+    <div><label>Duration</label><select id="duration"><option>30 seconds</option><option>45 seconds</option><option>60 seconds</option><option>90 seconds</option></select></div>
+    <div><label>Language</label><select id="language"><option>Hindi + Hinglish</option><option>Simple Hindi</option><option>Easy English</option><option>Marathi + Hindi</option></select></div>
    </div>
-   <label for="ending">Ending / message (optional)</label><input id="ending" placeholder="Jaise: dosti mein trust zaroori hai" maxlength="120">
-   <div class="btnrow"><button class="btn" id="generate">✨ Generate Reel Plan</button><button class="btn secondary" id="clear">Clear</button></div>
+   <label>Extra message (optional)</label><input id="message" maxlength="160" placeholder="Jaise: dosti mein trust zaroori hai">
+   <div class="btnrow"><button class="btn" id="generate">✨ Generate Script</button><button class="btn secondary" id="save">🔖 Save Script</button></div>
+   <div id="aiStatus" class="status">Mode: Built-in free starter generator. Cloud AI activate karne ke liye setup guide dekho.</div>
   </div>
-  <div id="resultCard" class="card hidden">
-   <h3>📝 Your Reel Script</h3><p class="sub">Ye starter template-based output hai. Apne style ke hisaab se edit kar sakte ho.</p>
-   <div id="script" class="output"></div>
-   <div class="btnrow"><button class="btn secondary small" data-copy="script">Copy Script</button><button class="btn small" id="save">🔖 Save Idea</button></div>
-   <h3 style="margin-top:20px">🎥 Scene-by-Scene Planner</h3><div id="scenes"></div>
-   <div class="btnrow"><button class="btn secondary small" id="copyScenes">Copy Scene Plan</button></div>
+  <div id="scriptCard" class="card hidden"><h3>📝 Reel Script</h3><div id="script" class="out"></div><div class="btnrow"><button class="btn secondary" data-copy="script">Copy Script</button></div><h3 style="margin-top:18px">🎥 Scene planner</h3><div id="scenes"></div><div class="btnrow"><button class="btn secondary" id="copyScenes">Copy Scene Plan</button></div></div>
+ </section>
+ <section id="music" class="hidden">
+  <div class="card"><h3>🎵 Music Mood & Background Guide</h3><p class="sub">Apni reel ki feeling select karo. App music ka mood aur visual background suggest karega.</p>
+   <label>Reel mood</label><select id="mood"><option value="emotional">Emotional / Heart-touching</option><option value="comedy">Comedy / Fun</option><option value="motivation">Motivational / Powerful</option><option value="travel">Travel / Cinematic</option><option value="suspense">Suspense / Mystery</option><option value="education">Educational / Clean</option></select>
+   <label>Location / setting</label><input id="setting" placeholder="Jaise: sunset road, classroom, home, garden">
+   <div class="btnrow"><button class="btn" id="musicBtn">Suggest Music Mood</button></div>
+  </div><div class="card hidden" id="musicResult"><h3>🎧 Suggestions</h3><div id="musicOut" class="out"></div></div>
+ </section>
+ <section id="thumb" class="hidden">
+  <div class="card"><h3>🖼 Thumbnail Text & Design Helper</h3><p class="sub">Short text, visual style aur layout idea banao.</p>
+   <label>Reel ka topic</label><input id="thumbTopic" maxlength="100" placeholder="Jaise: meri life ka sabse bada lesson">
+   <label>Thumbnail style</label><select id="thumbStyle"><option value="cinematic">Dark cinematic</option><option value="emotional">Emotional close-up</option><option value="comedy">Bright comedy</option><option value="educational">Clean educational</option></select>
+   <div class="btnrow"><button class="btn" id="thumbBtn">Generate Thumbnail Idea</button><button class="btn secondary" id="copyThumb">Copy Design Brief</button></div>
+  </div><div class="card hidden" id="thumbResult"><h3>✨ Thumbnail preview idea</h3><div class="thumb"><div class="big" id="thumbBig">YOUR REEL TITLE</div><div class="small" id="thumbSmall">WATCH NOW • REEL MAKER HELPER</div></div><div id="thumbBrief" class="out" style="margin-top:12px"></div></div>
+ </section>
+ <section id="saved" class="hidden"><div class="card"><h3>🔖 My Saved Scripts</h3><p class="sub">Login ke baad cloud save; bina login local phone/browser mein save.</p><div id="savedList"></div></div></section>
+ <section id="account" class="hidden">
+  <div class="card"><h3>👤 Account & Cloud Sync</h3><p class="sub">Email se sign up/login karke scripts ko apne Supabase account mein save kar sakte ho.</p>
+   <label>Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com">
+   <label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="At least 8 characters">
+   <div class="btnrow"><button class="btn" id="signup">Create account</button><button class="btn secondary" id="login">Login</button><button class="btn secondary" id="logout">Logout</button></div>
+   <div id="accountStatus" class="status">Cloud account setup pending. Local saving works without account.</div>
+   <p class="note">Supabase URL aur anon key setup karne ke baad hi login/cloud save active hoga. Password app khud store nahi karti; authentication Supabase handle karta hai.</p>
   </div>
  </section>
- <section id="captions" class="hidden">
-  <div class="card">
-   <h3>✍️ Caption & Hashtag Helper</h3><p class="sub">Topic likho aur apne post ke liye caption ideas pao.</p>
-   <label for="capTopic">Reel ka topic</label><input id="capTopic" placeholder="Jaise: hard work, friendship, college life..." maxlength="120">
-   <label for="capMood">Caption style</label><select id="capMood"><option value="emotional">Emotional</option><option value="funny">Funny</option><option value="motivational">Motivational</option><option value="simple">Simple / Clean</option></select>
-   <div class="btnrow"><button class="btn" id="makeCaption">Generate Caption</button></div>
-  </div>
-  <div class="card hidden" id="captionResult"><h3>📌 Caption ideas</h3><div id="captionsOut" class="output"></div><div class="btnrow"><button class="btn secondary small" data-copy="captionsOut">Copy Captions</button></div><h3 style="margin-top:17px"># Hashtags</h3><div id="hashtags" class="output"></div><div class="btnrow"><button class="btn secondary small" data-copy="hashtags">Copy Hashtags</button></div></div>
- </section>
- <section id="saved" class="hidden">
-  <div class="card"><h3>🔖 My Saved Ideas</h3><p class="sub">Saved scripts isi phone/browser mein rahengi.</p><div id="savedList"></div><p class="note">Note: Browser data clear karne ya device badalne par saved ideas delete ho sakti hain. Abhi cloud sync nahi hai.</p></div>
- </section>
- <footer>Reel Maker Helper • Starter Version 1.0<br>Made for creators. Create responsibly and use music you have permission to use.</footer>
+ <footer>Reel Maker Helper 2.0 • Starter project<br>Music suggestions are mood/genre guidance, not copyrighted audio files.</footer>
 </main>
 <script>
-const $=id=>document.getElementById(id);
-let current=null;
-const words={
- emotional:{hook:"Kabhi-kabhi ek chhoti si baat dil ko bahut kuch sikha deti hai.",middle:"Shuruaat mein sab normal lag raha tha. Lekin phir ek aisa moment aaya jisne soch badal di. Us waqt samajh aaya ki asli value dikhave mein nahi, actions mein hoti hai.",end:"Aaj ki story se ek baat yaad rakhna: dil se ki gayi achchai kabhi waste nahi jaati."},
- comedy:{hook:"Bhai, aaj jo hua na… uske baad main khud hi hasne laga!",middle:"Maine socha tha sab plan ke hisaab se hoga. Lekin har step par kuch na kuch ulta hota gaya. Main smart banne gaya tha, aur situation ne mujhe hi comedy bana diya!",end:"Lesson: kabhi-kabhi life ka best entertainment hamare plans fail hone se milta hai."},
- motivation:{hook:"Agar tumhara goal bada hai, toh chhoti shuruaat se darna mat.",middle:"Har din perfect nahi hota. Kabhi result late milta hai, kabhi confidence kam hota hai. Lekin jo insaan roz thoda progress karta hai, woh ek din apni manzil ke kareeb pahunchta hai.",end:"Aaj ek chhota step lo. Consistency hi real power hai."},
- horror:{hook:"Raat ke sannate mein ek ajeeb si awaaz sunai di…",middle:"Maine ruk kar aas-paas dekha. Jagah bilkul khaali thi. Phir phone ki light mein ek purana note dikha, jis par ek warning likhi thi. Main samajh gaya ki yahan rukna sahi nahi.",end:"Kabhi-kabhi curiosity se zyada zaroori hoti hai safety. Suspense yahin khatam!"},
- education:{hook:"Kya tumhe pata hai? Aaj ek useful baat simple language mein samjhte hain.",middle:"Is topic ko samajhne ka easy tareeka hai: pehle basic concept dekho, phir ek real-life example se connect karo. Jab example clear hota hai, concept yaad rakhna easy ho jata hai.",end:"Is tip ko save karo aur apne dost ke saath share karo."},
- daily:{hook:"Aaj ka din simple tha, lekin ek chhoti si baat yaad reh gayi.",middle:"Subah se routine normal chal raha tha. Kaam, thodi masti aur beech mein ek unexpected moment. Kabhi-kabhi normal days hi best memories bana dete hain.",end:"Apne everyday moments ko enjoy karo. Chhoti khushiyan bhi important hain."}
+const CONFIG={SUPABASE_URL:"YOUR_SUPABASE_PROJECT_URL",SUPABASE_ANON_KEY:"YOUR_SUPABASE_ANON_KEY"};
+const $=id=>document.getElementById(id);let sb=null,user=null,current=null;
+if(window.supabase&&CONFIG.SUPABASE_URL.startsWith("https://")&&!CONFIG.SUPABASE_URL.includes("YOUR_")&&!CONFIG.SUPABASE_ANON_KEY.includes("YOUR_")){sb=window.supabase.createClient(CONFIG.SUPABASE_URL,CONFIG.SUPABASE_ANON_KEY);sb.auth.getSession().then(({data})=>{user=data.session?.user||null;accountMessage(user?`Logged in: ${user.email}`:"Not logged in");});}
+function accountMessage(s,kind=""){const el=$("accountStatus");el.textContent=s;el.className="status "+kind}
+const fallback={
+ emotional:{hook:"Kabhi-kabhi ek chhota sa moment humein zindagi ki badi baat sikha deta hai.",body:"Ek dost mushkil waqt se guzar raha tha. Sab apne kaam mein busy the, lekin ek insaan bina kuch kahe uske saath khada raha. Us din samajh aaya ki asli dosti sirf achhe waqt mein nahi, mushkil waqt mein pehchaani jaati hai.",end:"Rishte words se nahi, actions se prove hote hain."},
+ comedy:{hook:"Maine socha tha aaj sab kuch perfect hoga… par comedy toh ab shuru hui!",body:"Main full confidence ke saath apna plan execute karne nikla. Pehla step sahi, doosra bhi sahi… aur teesre step par sab ulta ho gaya. Main situation sambhalne gaya, lekin meri hi planning sabse funny moment ban gayi.",end:"Life ko thoda lightly lo; kabhi-kabhi mistakes hi best memories banati hain."},
+ motivation:{hook:"Bada goal hai? Toh aaj ka ek chhota step miss mat karo.",body:"Progress hamesha fast nahi hoti. Kabhi result late aata hai, kabhi confidence low hota hai. Lekin roz ki chhoti mehnat dheere-dheere strong habit ban jaati hai.",end:"Perfect hone ka wait mat karo. Shuruaat karo aur seekhte raho."},
+ education:{hook:"Ek useful concept ko aaj bilkul simple language mein samajhte hain.",body:"Pehle basic meaning samjho, phir uska daily-life example dekho. Jab concept ko real situation se connect karte ho, toh use yaad rakhna easy ho jata hai.",end:"Is tip ko save karo aur practice mein use karo."},
+ daily:{hook:"Aaj ka simple day ek chhoti si memory ban gaya.",body:"Routine ke beech ek unexpected moment aaya. Usne yaad dilaya ki har din mein kuch na kuch achha hota hai, bas use notice karna padta hai.",end:"Chhoti khushiyon ko miss mat karo."},
+ suspense:{hook:"Us jagah par sab normal tha… phir ek unexpected clue mila.",body:"Maine aas-paas dekha aur ek note notice kiya. Us par likhi baat ne poori situation ka meaning badal diya. Main safe jagah par gaya aur tab samjha ki har mystery ko risk lekar solve karna zaroori nahi.",end:"Curiosity achhi hai, lekin safety sabse pehle."}
 };
-function build(){
- const topic=$('topic').value.trim();if(!topic){alert('Pehle apna Reel topic likho.');$('topic').focus();return}
- const cat=$('category').value, t=words[cat], dur=$('duration').value, ending=$('ending').value.trim();
- const lang=$('language').value;
- const title=topic.length>48?topic.slice(0,45)+'...':topic;
- const script=`REEL TITLE: ${title}\nCATEGORY: ${$('category').selectedOptions[0].text}\nDURATION: ${dur}\n\nHOOK (0–5 sec)\n${t.hook}\n\nSTORY / MAIN PART\n${t.middle}\n\nENDING / MESSAGE\n${ending||t.end}\n\nCTA\nAisi aur reels ke liye follow karo aur apna opinion comment mein batao!`;
- const scenes=[
-  ['Scene 1 • Hook','0–5 sec','Camera ko eye-level par rakho. Topic se related expressive opening shot lo.','Hook wali line bolo; screen par 3–5 words ka text.'],
-  ['Scene 2 • Setup','5–15 sec','Wide shot se location aur situation establish karo.','Topic ka background short mein batao.'],
-  ['Scene 3 • Main moment','15–30 sec','Medium shot + close-up. Important action ya reaction capture karo.','Story ka main point / twist explain karo.'],
-  ['Scene 4 • Ending','Last 5–10 sec','Stable close-up; 1 second ka pause rakho.','Message: '+(ending||t.end)],
-  ['Scene 5 • CTA','Last 2–3 sec','Camera ki taraf dekho; simple end screen.','“Follow karo aur comment mein batao!”']
- ];
- current={title,script,scenes,category:cat};
- $('script').textContent=script;$('scenes').innerHTML=scenes.map(s=>`<div class="scene"><b>${s[0]} (${s[1]})</b><p><strong>Shot:</strong> ${s[2]}</p><p><strong>Dialogue / Action:</strong> ${s[3]}</p></div>`).join('');
- $('resultCard').classList.remove('hidden');
-}
-$('generate').onclick=build;
-$('clear').onclick=()=>{['topic','ending'].forEach(id=>$(id).value='');$('resultCard').classList.add('hidden');current=null};
-function sceneText(){return current?current.scenes.map(s=>`${s[0]} (${s[1]})\nShot: ${s[2]}\nDialogue/Action: ${s[3]}`).join('\n\n'):''}
-async function copyText(text){try{await navigator.clipboard.writeText(text);alert('Copied! Ab paste kar sakte ho.')}catch(e){const a=document.createElement('textarea');a.value=text;document.body.append(a);a.select();document.execCommand('copy');a.remove();alert('Copied!')}}
-document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copyText($(b.dataset.copy).textContent));
-$('copyScenes').onclick=()=>copyText(sceneText());
-function getSaved(){try{return JSON.parse(localStorage.getItem('rmh_saved')||'[]')}catch(e){return []}}
-function saveCurrent(){if(!current)return;let a=getSaved();a.unshift({...current,created:new Date().toLocaleDateString()});localStorage.setItem('rmh_saved',JSON.stringify(a.slice(0,30)));renderSaved();alert('Idea save ho gaya!')}
-$('save').onclick=saveCurrent;
-function renderSaved(){let a=getSaved();$('savedList').innerHTML=a.length?a.map((x,i)=>`<div class="saved-item"><strong>${escapeHtml(x.title)}</strong><span class="pill">${escapeHtml(x.category)}</span><span class="note">${escapeHtml(x.created||'')}</span><div class="btnrow"><button class="btn secondary small" onclick="copySaved(${i})">Copy</button><button class="btn secondary small" onclick="deleteSaved(${i})">Delete</button></div></div>`).join(''):'<p class="note">Abhi koi idea save nahi hai. Create tab mein jaakar apni first Reel save karo.</p>'}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-window.copySaved=i=>copyText(getSaved()[i].script);
-window.deleteSaved=i=>{let a=getSaved();a.splice(i,1);localStorage.setItem('rmh_saved',JSON.stringify(a));renderSaved()};
-$('makeCaption').onclick=()=>{
- let topic=$('capTopic').value.trim();if(!topic){alert('Topic likho.');return}
- let mood=$('capMood').value, cap;
- if(mood==='funny')cap=`${topic} ka scene hi alag hai 😂\nPlan kuch aur tha, hua kuch aur!\nTumhare saath bhi aisa hua hai? Comment karo.`;
- else if(mood==='motivational')cap=`${topic} — ek reminder ki rukna option nahi hai. ✨\nRoz thoda aage badho. Tum kar sakte ho!`;
- else if(mood==='emotional')cap=`Kuch baatein words se nahi, feelings se samajh aati hain. ❤️\n${topic} — agar relate kiya, toh kisi apne ke saath share karo.`;
- else cap=`${topic} ✨\nAapka kya opinion hai? Comments mein zaroor batana.`;
- $('captionsOut').textContent=cap;
- const tags=['#reels','#reelsindia','#hindireels','#contentcreator','#shortvideo','#creatorcommunity','#'+topic.replace(/[^a-zA-Z0-9]/g,'').toLowerCase()].filter(x=>x.length>1);
- $('hashtags').textContent=tags.join(' ');
- $('captionResult').classList.remove('hidden');
-};
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
- document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));
- ['create','captions','saved'].forEach(id=>$(id).classList.toggle('hidden',id!==b.dataset.tab));
- if(b.dataset.tab==='saved')renderSaved();
-});
-renderSaved();
+function localGenerate(topic,cat,duration,message){const d=fallback[cat];const script=`TITLE: ${topic}\nDURATION: ${duration}\n\nHOOK\n${d.hook}\n\nSTORY\n${d.body}\n\nENDING / MESSAGE\n${message||d.end}\n\nCTA\nAgar story pasand aayi toh like, share aur follow karo!`;const scenes=[["Hook","0–5 sec","Eye-level close-up; opening expression clear rakho.",d.hook],["Setup","5–15 sec","Wide shot; location aur situation establish karo.","Topic ka short introduction do."],["Main story","15–30 sec","Medium shot + reaction close-up; natural acting rakho.",d.body],["Ending","Last 5–10 sec","Stable close-up; final line ke baad short pause.",message||d.end],["CTA","Last 2–3 sec","Simple end screen ya camera-facing shot.","Like, share aur follow karne ko bolo."]];return {title:topic,script,scenes};}
+function render(result){current=result;$("script").textContent=result.script;$("scenes").innerHTML=(result.scenes||[]).map(s=>`<div class="scene"><b>${esc(s[0])} • ${esc(s[1])}</b><p><strong>Shot:</strong> ${esc(s[2])}</p><p><strong>Dialogue:</strong> ${esc(s[3])}</p></div>`).join("");$("scriptCard").classList.remove("hidden");}
+async function generate(){const topic=$("topic").value.trim();if(!topic){alert("Pehle topic likho.");return}const cat=$("category").value,duration=$("duration").value,message=$("message").value.trim();$("aiStatus").textContent="Generating...";let result=null;
+ if(sb){try{const {data,error}=await sb.functions.invoke("generate",{body:{topic,category:cat,duration,language:$("language").value,message}});if(error)throw error;result=data;}catch(e){$("aiStatus").textContent="AI service connect nahi hui; built-in generator use kiya. Setup guide check karo.";}}
+ if(!result){result=localGenerate(topic,cat,duration,message);if(!sb)$("aiStatus").textContent="Free built-in mode active. Live AI ke liye secure Edge Function setup zaroori hai.";}
+ render(result);}
+$("generate").onclick=generate;
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function copy(t){try{await navigator.clipboard.writeText(t);alert("Copied!")}catch(e){alert("Copy support nahi mila; text select karke copy karo.")}}
+document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copy($(b.dataset.copy).textContent));
+$("copyScenes").onclick=()=>copy((current?.scenes||[]).map(s=>`${s[0]} (${s[1]})\nShot: ${s[2]}\nDialogue: ${s[3]}`).join("\n\n"));
+async function getSaved(){if(sb&&user){const {data,error}=await sb.from("saved_scripts").select("*").order("created_at",{ascending:false});if(!error)return data||[];}try{return JSON.parse(localStorage.getItem("rmh2_saved")||"[]")}catch(e){return []}}
+async function save(){if(!current){alert("Pehle script generate karo.");return}if(sb&&user){const {error}=await sb.from("saved_scripts").insert({user_id:user.id,title:current.title,content:current.script,scenes:current.scenes});if(error){alert("Cloud save failed: "+error.message);return}alert("Cloud mein save ho gaya!");}else{let a=JSON.parse(localStorage.getItem("rmh2_saved")||"[]");a.unshift({...current,created:new Date().toLocaleString()});localStorage.setItem("rmh2_saved",JSON.stringify(a.slice(0,50)));alert("Phone/browser mein locally save ho gaya. Cloud save ke liye account setup/login karo.");}await renderSaved();}
+$("save").onclick=save;
+async function renderSaved(){const a=await getSaved();$("savedList").innerHTML=a.length?a.map((x,i)=>`<div class="saved"><strong>${esc(x.title)}</strong><p class="note">${esc(x.created_at||x.created||"Saved idea")}</p><div class="btnrow"><button class="btn secondary" data-scopy="${i}">Copy</button>${sb&&user?`<button class="btn danger" data-sdel="${esc(x.id)}">Delete</button>`:`<button class="btn danger" data-ldel="${i}">Delete</button>`}</div><div class="note" style="margin-top:7px">${esc(x.content||x.script||"")}</div></div>`).join(""):"<p class='note'>Abhi koi saved script nahi hai.</p>";
+ document.querySelectorAll("[data-scopy]").forEach(b=>b.onclick=()=>copy(a[+b.dataset.scopy].content||a[+b.dataset.scopy].script));
+ document.querySelectorAll("[data-ldel]").forEach(b=>b.onclick=()=>{let x=JSON.parse(localStorage.getItem("rmh2_saved")||"[]");x.splice(+b.dataset.ldel,1);localStorage.setItem("rmh2_saved",JSON.stringify(x));renderSaved()});
+ document.querySelectorAll("[data-sdel]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this saved script?"))return;await sb.from("saved_scripts").delete().eq("id",b.dataset.sdel);renderSaved()});}
+$("musicBtn").onclick=()=>{const mood=$("mood").value,place=$("setting").value.trim()||"simple indoor/outdoor location";const m={
+ emotional:"Soft piano, warm acoustic guitar ya gentle ambient instrumental. Slow pacing, natural pauses; copyrighted track use karne ke bajay licensed/royalty-free ya platform music library check karo.",
+ comedy:"Light upbeat percussion, playful plucks, short comic stings aur quick pauses. Sound effects ko low volume par rakho.",
+ motivation:"Uplifting cinematic instrumental, steady beat aur gradual build-up. Dialogue ko music se zyada clear rakho.",
+ travel:"Ambient cinematic pads, mellow electronic beat ya acoustic travel instrumental. Natural location sound bhi capture karo.",
+ suspense:"Low-volume atmospheric drone, subtle ticking/percussion aur silence ka use. Sudden loud sound avoid karo.",
+ education:"Soft lo-fi ya minimal instrumental; vocals kam rakho taaki explanation clearly sunai de."
+};const bgs={emotional:"Golden-hour window light, empty walkway, gentle rain-on-window visuals.",comedy:"Bright everyday setting, expressive reaction close-ups, clean background.",motivation:"Sunrise, open road/track, early-morning light; safe public location.",travel:"Wide establishing shot, scenic viewpoint, slow pan and natural light.",suspense:"Dim but safely lit corridor, long shadows, close-up clue shots; no risky locations.",education:"Clean desk, uncluttered wall, close-up of notes or demonstration."};$("musicOut").textContent=`MOOD: ${mood.toUpperCase()}\n\nMUSIC DIRECTION\n${m[mood]}\n\nBACKGROUND / VISUAL IDEA\n${bgs[mood]}\n\nYOUR SETTING\n${place}\n\nEDIT TIP\nVoice/dialogue ko clear rakho; music volume low rakho. Platform ki licensed music library ya properly licensed tracks hi use karo.`;$("musicResult").classList.remove("hidden");};
+let thumbText="";
+$("thumbBtn").onclick=()=>{const topic=$("thumbTopic").value.trim();if(!topic){alert("Thumbnail topic likho.");return}const style=$("thumbStyle").value;const short=topic.length>30?topic.slice(0,27)+"...":topic;const styles={cinematic:"Dark purple/black gradient, one strong subject on right, bold white title on left, pink accent glow.",emotional:"Close-up expression, soft warm light, blurred background, 3–5 word heartfelt headline.",comedy:"Bright high-contrast background, expressive reaction, playful bold text and one simple visual cue.",educational:"Clean two-colour layout, large readable title, one relevant object/icon, no clutter."};$("thumbBig").textContent=short;$("thumbSmall").textContent="NEW REEL • WATCH NOW";thumbText=`THUMBNAIL DESIGN BRIEF\nTopic: ${topic}\nStyle: ${style}\nHeadline: ${short}\nLayout: ${styles[style]}\nFormat: 9:16 cover-safe composition; keep important text near centre so it remains visible in profile previews.\nTip: Use your own photo or properly licensed visuals.`;$("thumbBrief").textContent=thumbText;$("thumbResult").classList.remove("hidden");};
+$("copyThumb").onclick=()=>thumbText?copy(thumbText):alert("Pehle thumbnail idea generate karo.");
+$("signup").onclick=async()=>{if(!sb){accountMessage("Pehle Supabase project URL aur anon key add karo. README mein steps hain.","warn");return}const {data,error}=await sb.auth.signUp({email:$("email").value,password:$("password").value});if(error)accountMessage(error.message,"warn");else accountMessage(data.session?"Account created and logged in.":"Signup request sent. Email verification check karo.","ok");};
+$("login").onclick=async()=>{if(!sb){accountMessage("Supabase config pending. README dekho.","warn");return}const {data,error}=await sb.auth.signInWithPassword({email:$("email").value,password:$("password").value});if(error)accountMessage(error.message,"warn");else{user=data.user;accountMessage("Logged in: "+user.email,"ok");}};
+$("logout").onclick=async()=>{if(sb)await sb.auth.signOut();user=null;accountMessage("Logged out. Local save abhi bhi available hai.");};
+if(sb)sb.auth.onAuthStateChange((_event,session)=>{user=session?.user||null;if(user)accountMessage("Logged in: "+user.email,"ok");});
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));["create","music","thumb","saved","account"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.tab));if(b.dataset.tab==="saved")renderSaved();});
 </script>
 </body></html>
