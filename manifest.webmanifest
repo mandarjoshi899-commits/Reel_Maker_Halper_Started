@@ -1,0 +1,13 @@
+
+{
+  "id": "/Reel_Maker_Halper_Started/",
+  "name": "Reel Maker Helper 2.0",
+  "short_name": "Reel Maker",
+  "description": "Reel Maker Helper is a creative application for making Instagram Reels and short videos. It helps users generate reel scripts, captions, music mood ideas, thumbnail ideas and creative content. Create better videos with simple and useful tools.",
+  "start_url": "/Reel_Maker_Halper_Started/",
+  "scope": "/Reel_Maker_Halper_Started/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#121212",
+  "background_color": "#ffffff"
+}
