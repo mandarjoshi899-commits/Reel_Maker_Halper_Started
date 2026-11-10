@@ -1,71 +1,22 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090b14">
-  <meta name="description" content="Reel Maker Helper — AI video creation studio">
-  <title>Reel Maker Helper 3.0</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b14"><title>Reel Maker Helper – Free Trial</title>
+<link rel="stylesheet" href="styles.css"></head>
 <body>
-  <header class="topbar">
-    <div class="brand-mark">RM</div>
-    <div><strong>REEL MAKER HELPER</strong><small>AI CREATOR STUDIO · 3.0</small></div>
-    <span class="secure">● Secure starter</span>
-  </header>
-
-  <main class="wrap">
-    <section class="hero">
-      <p class="eyebrow">CREATE · EDIT · SHARE</p>
-      <h1>Your next Reel<br><span>starts here.</span></h1>
-      <p class="muted">Turn ideas and images into short-video projects.</p>
-      <div class="hero-tags"><span>9:16 Shorts</span><span>Hindi + English</span><span>Creator tools</span></div>
-    </section>
-
-    <nav class="tabs" aria-label="Creation mode">
-      <button class="tab active" data-mode="text">✍️ Text to Video</button>
-      <button class="tab" data-mode="image">🖼️ Image to Video</button>
-    </nav>
-
-    <section class="panel">
-      <div id="textPanel">
-        <label for="prompt">Describe your video idea</label>
-        <textarea id="prompt" maxlength="1800" placeholder="Example: A heartwarming 20-second story about a child helping an injured bird..."></textarea>
-        <div class="row between"><small id="charCount">0 / 1800</small><button id="ideaBtn" class="ghost">Give me an idea</button></div>
-      </div>
-
-      <div id="imagePanel" hidden>
-        <label for="imageFile">Choose one image</label>
-        <input id="imageFile" type="file" accept="image/png,image/jpeg,image/webp">
-        <p class="hint">JPG, PNG or WebP · Maximum 8 MB. Uploads are not sent anywhere in demo mode.</p>
-        <img id="preview" alt="Selected image preview" hidden>
-        <label for="motion">How should the image move?</label>
-        <textarea id="motion" maxlength="700" placeholder="Example: Slow cinematic camera push-in, gentle background movement..."></textarea>
-      </div>
-
-      <div class="grid2">
-        <div><label for="duration">Duration</label><select id="duration"><option value="5">5 seconds</option><option value="10" selected>10 seconds</option><option value="15">15 seconds</option><option value="30">30 seconds</option></select></div>
-        <div><label for="ratio">Video format</label><select id="ratio"><option value="9:16">9:16 · Reels / Shorts</option><option value="16:9">16:9 · YouTube</option><option value="1:1">1:1 · Square</option></select></div>
-      </div>
-      <button id="generateBtn" class="primary">Create video project <span>→</span></button>
-      <p id="status" class="status" role="status">Demo mode: connect a trusted AI video provider on the backend to enable real generation.</p>
-    </section>
-
-    <section class="section-head"><div><p class="eyebrow">CREATOR TOOLKIT</p><h2>More ways to create</h2></div></section>
-    <div class="tool-grid">
-      <article class="tool"><b>✍️</b><strong>Reel Script Writer</strong><small>Story hooks and scene ideas</small></article>
-      <article class="tool"><b>🎙️</b><strong>Voiceover Planner</strong><small>Hindi / English narration text</small></article>
-      <article class="tool"><b>💬</b><strong>Caption Helper</strong><small>Subtitles and caption drafts</small></article>
-      <article class="tool"><b>🎨</b><strong>Thumbnail Ideas</strong><small>Titles and cover concepts</small></article>
-    </div>
-
-    <section class="notice">
-      <strong>🔐 Privacy-first design</strong>
-      <p>No SMS, contacts, location, accessibility or overlay permission is requested. Do not upload private images. Real AI generation requires a configured backend service.</p>
-    </section>
-    <footer>Reel Maker Helper 3.0 · Use media you own or have permission to use.</footer>
-  </main>
-  <script src="app.js"></script>
-</body>
-</html>
+<header><div class="logo">RM</div><div><b>REEL MAKER HELPER</b><small>FREE VIDEO TRIAL</small></div><span class="safe">SECURE LOCAL DEMO</span></header>
+<main>
+<section class="hero"><p>CREATE · PREVIEW · DOWNLOAD</p><h1>Make your first<br><span>video for free.</span></h1><small>This free trial creates a simple animated sample in your browser. No account, payment or API key needed.</small></section>
+<nav><button class="tab active" data-mode="text">Text to Video</button><button class="tab" data-mode="image">Image to Video</button></nav>
+<section class="panel">
+<div id="textBox"><label for="prompt">Your video idea</label><textarea id="prompt" maxlength="300" placeholder="A beautiful sunrise over a peaceful village..."></textarea></div>
+<div id="imageBox" hidden><label for="photo">Choose a photo (JPG/PNG/WebP, max 5 MB)</label><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><img id="preview" hidden alt="Photo preview"><label for="motion">Motion description</label><input id="motion" maxlength="120" placeholder="Slow cinematic zoom in"></div>
+<div class="row"><div><label for="seconds">Length</label><select id="seconds"><option>5</option><option selected>8</option><option>10</option></select></div><div><label for="ratio">Format</label><select id="ratio"><option value="9:16">Vertical 9:16</option><option value="16:9">Landscape 16:9</option><option value="1:1">Square 1:1</option></select></div></div>
+<button class="primary" id="make">Generate free sample</button>
+<p class="status" id="status" role="status">Free trial: sample animation is generated on this device. It is not full AI video generation.</p>
+<canvas id="stage" width="540" height="960" hidden></canvas>
+<a id="download" hidden>Download sample video</a>
+</section>
+<section class="security"><b>🔐 Security & privacy</b><p>Your selected photo stays in this browser for this local demo. No upload, payment, login, API key or extra phone permission is used. Do not select private or sensitive photos.</p></section>
+<p class="foot">Free local sample · Real AI video generation requires a connected AI provider and secure backend.</p>
+</main><script src="app.js"></script></body></html>
