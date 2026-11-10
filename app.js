@@ -1,69 +1,57 @@
-// Set this to your deployed HTTPS backend URL. Do not put AI provider keys here.
-const API_BASE = ""; // Example: "https://your-api.example.com"
-let mode = "text";
-const $ = (id) => document.getElementById(id);
-const tabs = document.querySelectorAll(".tab");
-
-tabs.forEach((tab) => tab.addEventListener("click", () => {
-  mode = tab.dataset.mode;
-  tabs.forEach(t => t.classList.toggle("active", t === tab));
-  $("textPanel").hidden = mode !== "text";
-  $("imagePanel").hidden = mode !== "image";
-  $("status").textContent = "Selected: " + (mode === "text" ? "Text to Video" : "Image to Video");
+let mode="text", photo=null;
+const $=id=>document.getElementById(id);
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
+ mode=b.dataset.mode;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));
+ $("textBox").hidden=mode!=="text";$("imageBox").hidden=mode!=="image";$("download").hidden=true;
 }));
-
-$("prompt").addEventListener("input", () => $("charCount").textContent = `${$("prompt").value.length} / 1800`);
-$("ideaBtn").addEventListener("click", () => {
-  const ideas = [
-    "A 15-second uplifting story: a student helps a stranger, and discovers that kindness comes back in unexpected ways.",
-    "A funny 10-second moment where a clever puppy misunderstands a simple instruction.",
-    "A cinematic sunrise journey through a quiet village, ending with an inspiring message."
-  ];
-  $("prompt").value = ideas[Math.floor(Math.random() * ideas.length)];
-  $("prompt").dispatchEvent(new Event("input"));
+$("photo").addEventListener("change",()=>{
+ const f=$("photo").files[0];photo=null;$("preview").hidden=true;
+ if(!f)return;
+ if(!["image/jpeg","image/png","image/webp"].includes(f.type)||f.size>5*1024*1024){$("status").textContent="Choose JPG, PNG or WebP under 5 MB."; $("photo").value="";return;}
+ const url=URL.createObjectURL(f);photo=new Image();photo.onload=()=>{$("preview").src=url;$("preview").hidden=false;};photo.src=url;
 });
-
-$("imageFile").addEventListener("change", () => {
-  const file = $("imageFile").files[0];
-  $("preview").hidden = true;
-  if (!file) return;
-  const allowed = ["image/jpeg", "image/png", "image/webp"];
-  if (!allowed.includes(file.type) || file.size > 8 * 1024 * 1024) {
-    $("status").textContent = "Please select JPG, PNG or WebP under 8 MB.";
-    $("imageFile").value = "";
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = () => { $("preview").src = reader.result; $("preview").hidden = false; };
-  reader.readAsDataURL(file);
+function rounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill();}
+$("make").addEventListener("click",async()=>{
+ const status=$("status"),canvas=$("stage"),ctx=canvas.getContext("2d");
+ $("download").hidden=true;
+ const seconds=Number($("seconds").value), ratio=$("ratio").value;
+ let W=540,H=960;if(ratio==="16:9"){W=960;H=540}else if(ratio==="1:1"){W=720;H=720}
+ canvas.width=W;canvas.height=H;canvas.hidden=false;
+ let title=mode==="text"?$("prompt").value.trim():$("motion").value.trim();
+ if(mode==="text"&&title.length<5){status.textContent="Please type a video idea first.";return}
+ if(mode==="image"&&!photo){status.textContent="Please choose a photo first.";return}
+ const stream=canvas.captureStream(24);
+ const mime=["video/mp4;codecs=h264","video/webm;codecs=vp9","video/webm"].find(t=>MediaRecorder.isTypeSupported(t));
+ if(!mime){status.textContent="This browser does not support video recording. Try current Chrome.";return}
+ let recorder;try{recorder=new MediaRecorder(stream,{mimeType:mime})}catch(e){status.textContent="Video recording is not supported on this browser.";return}
+ const chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+ recorder.onerror=()=>status.textContent="Could not record this sample.";
+ recorder.onstop=()=>{
+   const blob=new Blob(chunks,{type:mime}),url=URL.createObjectURL(blob);
+   const ext=mime.startsWith("video/mp4")?"mp4":"webm";
+   const a=$("download");a.href=url;a.download=`reel-maker-free-sample.${ext}`;a.textContent=`⬇ Download sample ${ext.toUpperCase()}`;a.hidden=false;
+   status.textContent=`Your free ${ext.toUpperCase()} sample is ready. This is a browser-made animated sample, not AI-generated footage.`;
+   stream.getTracks().forEach(t=>t.stop());
+ };
+ status.textContent="Creating your free sample on this phone…";
+ const start=performance.now();
+ recorder.start();
+ function frame(now){
+   const p=Math.min((now-start)/(seconds*1000),1),t=now-start;
+   const grad=ctx.createLinearGradient(0,0,W,H);grad.addColorStop(0,"#171a3a");grad.addColorStop(.55,"#433b79");grad.addColorStop(1,"#102e40");ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+   for(let i=0;i<18;i++){ctx.fillStyle=`rgba(255,255,255,${.12+(i%4)*.04})`;ctx.beginPath();ctx.arc((i*97+t*.018)%W,(i*173)%H,2+(i%3),0,Math.PI*2);ctx.fill()}
+   if(mode==="image"&&photo){const scale=Math.max(W/photo.width,H/photo.height)*(1+.07*p),dw=photo.width*scale,dh=photo.height*scale;ctx.save();ctx.beginPath();ctx.rect(0,0,W,H);ctx.clip();ctx.drawImage(photo,(W-dw)/2,(H-dh)/2,dw,dh);ctx.restore();ctx.fillStyle="rgba(5,8,20,.48)";ctx.fillRect(0,0,W,H)}
+   else {ctx.fillStyle="rgba(255,255,255,.09)";rounded(ctx,W*.08,H*.23,W*.84,H*.48,30)}
+   ctx.textAlign="center";ctx.fillStyle="#ffffff";ctx.font=`bold ${Math.round(W*.075)}px system-ui`;wrapText(ctx,mode==="text"?title:"IMAGE TO VIDEO",W/2,H*.43,W*.76,Math.round(W*.095));
+   ctx.font=`${Math.round(W*.035)}px system-ui`;ctx.fillStyle="#d8d9ff";ctx.fillText("REEL MAKER HELPER · FREE TRIAL",W/2,H*.86);
+   ctx.fillStyle="#8b7cff";rounded(ctx,W*.12,H*.91,W*.76,8,5);ctx.fillStyle="#49d6d0";rounded(ctx,W*.12,H*.91,W*.76*p,8,5);
+   if(p<1)requestAnimationFrame(frame);else setTimeout(()=>recorder.stop(),120);
+ }
+ requestAnimationFrame(frame);
 });
-
-$("generateBtn").addEventListener("click", async () => {
-  const status = $("status");
-  if (!API_BASE) {
-    status.textContent = "Demo mode: backend URL is not configured yet. Real AI generation is not active. See README_HINDI.txt.";
-    return;
-  }
-  const form = new FormData();
-  form.append("duration", $("duration").value);
-  form.append("aspectRatio", $("ratio").value);
-  if (mode === "text") {
-    const prompt = $("prompt").value.trim();
-    if (prompt.length < 8) { status.textContent = "Please enter a more detailed video idea."; return; }
-    form.append("prompt", prompt);
-  } else {
-    const file = $("imageFile").files[0];
-    if (!file) { status.textContent = "Please choose an image first."; return; }
-    form.append("image", file);
-    form.append("motion", $("motion").value.trim());
-  }
-  try {
-    status.textContent = "Sending request securely…";
-    const response = await fetch(`${API_BASE}/api/video/${mode}`, { method: "POST", body: form });
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.error || "Generation service is not configured.");
-    status.textContent = data.message || "Request accepted. Check your project status with the configured provider.";
-  } catch (error) {
-    status.textContent = error.message || "Could not connect to the video service.";
-  }
-});
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){
+ const words=text.split(/\s+/);let line="",lines=[];
+ for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}
+ if(line)lines.push(line);lines=lines.slice(0,5);const start=y-(lines.length-1)*lineHeight/2;
+ lines.forEach((l,i)=>ctx.fillText(l,x,start+i*lineHeight));
+                           }
