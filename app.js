@@ -54,4 +54,4 @@ function wrapText(ctx,text,x,y,maxWidth,lineHeight){
  for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}
  if(line)lines.push(line);lines=lines.slice(0,5);const start=y-(lines.length-1)*lineHeight/2;
  lines.forEach((l,i)=>ctx.fillText(l,x,start+i*lineHeight));
-                           }
+    }
