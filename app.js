@@ -1,57 +1,166 @@
-let mode="text", photo=null;
-const $=id=>document.getElementById(id);
-document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
- mode=b.dataset.mode;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));
- $("textBox").hidden=mode!=="text";$("imageBox").hidden=mode!=="image";$("download").hidden=true;
-}));
-$("photo").addEventListener("change",()=>{
- const f=$("photo").files[0];photo=null;$("preview").hidden=true;
- if(!f)return;
- if(!["image/jpeg","image/png","image/webp"].includes(f.type)||f.size>5*1024*1024){$("status").textContent="Choose JPG, PNG or WebP under 5 MB."; $("photo").value="";return;}
- const url=URL.createObjectURL(f);photo=new Image();photo.onload=()=>{$("preview").src=url;$("preview").hidden=false;};photo.src=url;
+
+let mode = "text";
+let selectedPhoto = null;
+
+const $ = id => document.getElementById(id);
+
+document.querySelectorAll(".tab").forEach(button => {
+  button.addEventListener("click", () => {
+    mode = button.dataset.mode;
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.classList.toggle("active", tab === button);
+    });
+
+    $("textBox").hidden = mode !== "text";
+    $("imageBox").hidden = mode !== "image";
+    $("download").hidden = true;
+  });
 });
-function rounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill();}
-$("make").addEventListener("click",async()=>{
- const status=$("status"),canvas=$("stage"),ctx=canvas.getContext("2d");
- $("download").hidden=true;
- const seconds=Number($("seconds").value), ratio=$("ratio").value;
- let W=540,H=960;if(ratio==="16:9"){W=960;H=540}else if(ratio==="1:1"){W=720;H=720}
- canvas.width=W;canvas.height=H;canvas.hidden=false;
- let title=mode==="text"?$("prompt").value.trim():$("motion").value.trim();
- if(mode==="text"&&title.length<5){status.textContent="Please type a video idea first.";return}
- if(mode==="image"&&!photo){status.textContent="Please choose a photo first.";return}
- const stream=canvas.captureStream(24);
- const mime=["video/mp4;codecs=h264","video/webm;codecs=vp9","video/webm"].find(t=>MediaRecorder.isTypeSupported(t));
- if(!mime){status.textContent="This browser does not support video recording. Try current Chrome.";return}
- let recorder;try{recorder=new MediaRecorder(stream,{mimeType:mime})}catch(e){status.textContent="Video recording is not supported on this browser.";return}
- const chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
- recorder.onerror=()=>status.textContent="Could not record this sample.";
- recorder.onstop=()=>{
-   const blob=new Blob(chunks,{type:mime}),url=URL.createObjectURL(blob);
-   const ext=mime.startsWith("video/mp4")?"mp4":"webm";
-   const a=$("download");a.href=url;a.download=`reel-maker-free-sample.${ext}`;a.textContent=`⬇ Download sample ${ext.toUpperCase()}`;a.hidden=false;
-   status.textContent=`Your free ${ext.toUpperCase()} sample is ready. This is a browser-made animated sample, not AI-generated footage.`;
-   stream.getTracks().forEach(t=>t.stop());
- };
- status.textContent="Creating your free sample on this phone…";
- const start=performance.now();
- recorder.start();
- function frame(now){
-   const p=Math.min((now-start)/(seconds*1000),1),t=now-start;
-   const grad=ctx.createLinearGradient(0,0,W,H);grad.addColorStop(0,"#171a3a");grad.addColorStop(.55,"#433b79");grad.addColorStop(1,"#102e40");ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
-   for(let i=0;i<18;i++){ctx.fillStyle=`rgba(255,255,255,${.12+(i%4)*.04})`;ctx.beginPath();ctx.arc((i*97+t*.018)%W,(i*173)%H,2+(i%3),0,Math.PI*2);ctx.fill()}
-   if(mode==="image"&&photo){const scale=Math.max(W/photo.width,H/photo.height)*(1+.07*p),dw=photo.width*scale,dh=photo.height*scale;ctx.save();ctx.beginPath();ctx.rect(0,0,W,H);ctx.clip();ctx.drawImage(photo,(W-dw)/2,(H-dh)/2,dw,dh);ctx.restore();ctx.fillStyle="rgba(5,8,20,.48)";ctx.fillRect(0,0,W,H)}
-   else {ctx.fillStyle="rgba(255,255,255,.09)";rounded(ctx,W*.08,H*.23,W*.84,H*.48,30)}
-   ctx.textAlign="center";ctx.fillStyle="#ffffff";ctx.font=`bold ${Math.round(W*.075)}px system-ui`;wrapText(ctx,mode==="text"?title:"IMAGE TO VIDEO",W/2,H*.43,W*.76,Math.round(W*.095));
-   ctx.font=`${Math.round(W*.035)}px system-ui`;ctx.fillStyle="#d8d9ff";ctx.fillText("REEL MAKER HELPER · FREE TRIAL",W/2,H*.86);
-   ctx.fillStyle="#8b7cff";rounded(ctx,W*.12,H*.91,W*.76,8,5);ctx.fillStyle="#49d6d0";rounded(ctx,W*.12,H*.91,W*.76*p,8,5);
-   if(p<1)requestAnimationFrame(frame);else setTimeout(()=>recorder.stop(),120);
- }
- requestAnimationFrame(frame);
+
+$("photo").addEventListener("change", () => {
+  selectedPhoto = $("photo").files[0] || null;
+  $("preview").hidden = true;
+
+  if (!selectedPhoto) return;
+
+  if (!["image/jpeg", "image/png", "image/webp"].includes(selectedPhoto.type)) {
+    $("status").textContent = "Choose JPG, PNG or WebP.";
+    selectedPhoto = null;
+    return;
+  }
+
+  if (selectedPhoto.size > 800000) {
+    $("status").textContent = "For this test, choose a photo under 800 KB.";
+    selectedPhoto = null;
+    return;
+  }
+
+  $("preview").src = URL.createObjectURL(selectedPhoto);
+  $("preview").hidden = false;
 });
-function wrapText(ctx,text,x,y,maxWidth,lineHeight){
- const words=text.split(/\s+/);let line="",lines=[];
- for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}
- if(line)lines.push(line);lines=lines.slice(0,5);const start=y-(lines.length-1)*lineHeight/2;
- lines.forEach((l,i)=>ctx.fillText(l,x,start+i*lineHeight));
+
+function fileToDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function checkVideo(jobId) {
+  for (let i = 0; i < 100; i++) {
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
+    const response = await fetch(
+      "/api/generate?id=" + encodeURIComponent(jobId)
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Status check failed.");
     }
+
+    $("status").textContent = "AI video status: " + result.status;
+
+    if (result.status === "succeeded") {
+      return Array.isArray(result.output)
+        ? result.output[0]
+        : result.output;
+    }
+
+    if (result.status === "failed" || result.status === "canceled") {
+      throw new Error(result.error || "AI video failed.");
+    }
+  }
+
+  throw new Error("Video is taking too long. Try again later.");
+}
+
+$("make").textContent = "Generate AI Video";
+
+$("make").addEventListener("click", async () => {
+  const button = $("make");
+  const status = $("status");
+  $("download").hidden = true;
+
+  const prompt = mode === "text"
+    ? $("prompt").value.trim()
+    : $("motion").value.trim();
+
+  if (mode === "text" && prompt.length < 5) {
+    status.textContent = "Please enter a video prompt.";
+    return;
+  }
+
+  if (mode === "image" && !selectedPhoto) {
+    status.textContent = "Please select a photo.";
+    return;
+  }
+
+  button.disabled = true;
+
+  try {
+    status.textContent = "Sending request to AI...";
+
+    const body = { mode, prompt };
+
+    if (mode === "image") {
+      body.image = await fileToDataURL(selectedPhoto);
+    }
+
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+
+    const job = await response.json();
+
+    if (!response.ok) {
+      throw new Error(job.error || "AI request failed.");
+    }
+
+    if (!job.id) {
+      throw new Error("AI job ID was not returned.");
+    }
+
+    status.textContent = "AI is generating your video...";
+
+    const videoURL = await checkVideo(job.id);
+
+    if (!videoURL) {
+      throw new Error("Video link was not returned.");
+    }
+
+    let video = document.getElementById("aiVideo");
+
+    if (!video) {
+      video = document.createElement("video");
+      video.id = "aiVideo";
+      video.controls = true;
+      video.playsInline = true;
+      video.style.width = "100%";
+      video.style.borderRadius = "12px";
+      $("download").before(video);
+    }
+
+    video.src = videoURL;
+    video.hidden = false;
+    video.load();
+
+    const download = $("download");
+    download.href = videoURL;
+    download.textContent = "Download AI Video";
+    download.hidden = false;
+
+    status.textContent = "Your AI video is ready!";
+  } catch (error) {
+    status.textContent = error.message || "Something went wrong.";
+  } finally {
+    button.disabled = false;
+  }
+});
+ 
